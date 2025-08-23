@@ -1,6 +1,8 @@
 # 🌿 Dauns - Variable Detective for VS Code
 
-![Dauns Demo](https://via.placeholder.com/600x300.png?text=Dauns+Variable+Detective+Demo)
+<p align="center">
+  <img src="resources/logo.png" alt="Dauns Logo" width="200" height="200">
+</p>
 
 > A VS Code extension that detects and displays all variables in JavaScript/TypeScript files with detailed information.
 
@@ -168,6 +170,15 @@ The extension can be configured through VS Code settings:
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for information about the project creator and contribution guidelines.
+
+## 👤 Creator
+
+**Rasya Andrean**
+
+- Email: [rasyaandrean@outlook.co.id](mailto:rasyaandrean@outlook.co.id)
+- GitHub: [RasyaAndrean](https://github.com/RasyaAndrean)
 
 ## 📝 License
 

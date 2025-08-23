@@ -3,9 +3,14 @@ out/test/**
 src/**
 .git/**
 *.md
+!README.md
+!LICENSE.md
+!CHANGELOG.md
 .eslintrc.json
 tsconfig.json
 package-lock.json
 node_modules/
 .gitignore
 .vscodeignore
+# Don't ignore the resources directory as it contains the logo
+!resources/**

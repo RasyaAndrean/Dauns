@@ -3,6 +3,11 @@
   "displayName": "Dauns - Variable Detective",
   "description": "Detect and display all variables in JavaScript/TypeScript files with detailed information",
   "version": "0.0.1",
+  "icon": "resources/icon.png",
+  "author": {
+    "name": "Rasya Andrean",
+    "email": "rasyaandrean@outlook.co.id"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },

@@ -1,0 +1,270 @@
+{
+  "name": "dauns-variable-detective",
+  "displayName": "Dauns - Variable Detective",
+  "description": "Detect and display all variables in JavaScript/TypeScript files with detailed information",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rasya-andrean/dauns-vscode-extension.git"
+  },
+  "activationEvents": [
+    "onCommand:dauns.scanVariables",
+    "onCommand:dauns.detectUnusedVariables",
+    "onCommand:dauns.analyzeDependencies",
+    "onCommand:dauns.trackLifecycle",
+    "onCommand:dauns.scanWorkspace",
+    "onCommand:dauns.scanFolder",
+    "onCommand:dauns.renameVariable",
+    "onCommand:dauns.extractVariable",
+    "onCommand:dauns.extractVariableSmart",
+    "onCommand:dauns.convertVariable",
+    "onCommand:dauns.convertVariableSmart",
+    "onCommand:dauns.inlineVariable",
+    "onCommand:dauns.showInteractivePanel",
+    "onCommand:dauns.showPerformanceReport",
+    "onView:daunsVariables"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "dauns.scanVariables",
+        "title": "Scan Variables in Current File"
+      },
+      {
+        "command": "dauns.detectUnusedVariables",
+        "title": "Detect Unused Variables"
+      },
+      {
+        "command": "dauns.analyzeDependencies",
+        "title": "Analyze Variable Dependencies"
+      },
+      {
+        "command": "dauns.trackLifecycle",
+        "title": "Track Variable Lifecycle"
+      },
+      {
+        "command": "dauns.scanWorkspace",
+        "title": "Scan Variables in Workspace"
+      },
+      {
+        "command": "dauns.scanFolder",
+        "title": "Scan Variables in Folder"
+      },
+      {
+        "command": "dauns.renameVariable",
+        "title": "Rename Variable Across Workspace"
+      },
+      {
+        "command": "dauns.extractVariable",
+        "title": "Extract Variable"
+      },
+      {
+        "command": "dauns.extractVariableSmart",
+        "title": "Extract Variable with Smart Naming"
+      },
+      {
+        "command": "dauns.convertVariable",
+        "title": "Convert Variable Declaration"
+      },
+      {
+        "command": "dauns.convertVariableSmart",
+        "title": "Convert Variable with Smart Suggestions"
+      },
+      {
+        "command": "dauns.inlineVariable",
+        "title": "Inline Variable"
+      },
+      {
+        "command": "dauns.showInteractivePanel",
+        "title": "Show Interactive Variable Panel"
+      },
+      {
+        "command": "dauns.showPerformanceReport",
+        "title": "Show Performance Report"
+      },
+      {
+        "command": "dauns.refreshVariables",
+        "title": "Refresh Variables",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "dauns.clearVariables",
+        "title": "Clear Variables",
+        "icon": "$(clear-all)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "dauns.scanVariables",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx|py|vue|json|yaml|yml)$/",
+          "group": "navigation"
+        },
+        {
+          "command": "dauns.detectUnusedVariables",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx)$/",
+          "group": "navigation"
+        },
+        {
+          "command": "dauns.analyzeDependencies",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx)$/",
+          "group": "navigation"
+        },
+        {
+          "command": "dauns.trackLifecycle",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx)$/",
+          "group": "navigation"
+        },
+        {
+          "command": "dauns.showInteractivePanel",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx|py|vue|json|yaml|yml)$/",
+          "group": "navigation"
+        },
+        {
+          "command": "dauns.showPerformanceReport",
+          "when": "editorTextFocus",
+          "group": "navigation"
+        },
+        {
+          "command": "dauns.renameVariable",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx)$/",
+          "group": "refactoring"
+        },
+        {
+          "command": "dauns.extractVariable",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx)$/",
+          "group": "refactoring"
+        },
+        {
+          "command": "dauns.extractVariableSmart",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx)$/",
+          "group": "refactoring"
+        },
+        {
+          "command": "dauns.convertVariable",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx)$/",
+          "group": "refactoring"
+        },
+        {
+          "command": "dauns.convertVariableSmart",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx)$/",
+          "group": "refactoring"
+        },
+        {
+          "command": "dauns.inlineVariable",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx)$/",
+          "group": "refactoring"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "dauns.scanFolder",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "dauns.refreshVariables",
+          "when": "view == daunsVariables",
+          "group": "navigation"
+        },
+        {
+          "command": "dauns.clearVariables",
+          "when": "view == daunsVariables",
+          "group": "navigation"
+        }
+      ]
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "daunsVariables",
+          "name": "DAUNS Variables",
+          "when": "resourceExtname =~ /\\.(js|ts|jsx|tsx|py|vue|json|yaml|yml)$/"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "daunsVariables",
+        "contents": "No variables found. Try opening a JavaScript, TypeScript, Python, Vue.js, JSON, or YAML file and running the 'Scan Variables in Current File' command.\n[Scan Workspace](command:dauns.scanWorkspace)"
+      }
+    ],
+    "configuration": {
+      "title": "DAUNS Variable Detective",
+      "properties": {
+        "dauns.fileExtensions": {
+          "type": "array",
+          "default": [
+            ".js",
+            ".ts",
+            ".jsx",
+            ".tsx",
+            ".py",
+            ".vue",
+            ".json",
+            ".yaml",
+            ".yml"
+          ],
+          "description": "File extensions to scan for variables"
+        },
+        "dauns.includeNodeModules": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include node_modules directory in workspace scans"
+        },
+        "dauns.maxFileSizeKB": {
+          "type": "number",
+          "default": 1024,
+          "description": "Maximum file size to scan (in KB)"
+        },
+        "dauns.showFunctionVariables": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show function variables in results"
+        },
+        "dauns.showUnusedVariablesWarning": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show warning for unused variables"
+        },
+        "dauns.customVariablePatterns": {
+          "type": "array",
+          "default": [],
+          "description": "Custom regex patterns for variable detection"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "test:unit": "node ./out/variableScanner.test.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "eslint": "^8.47.0",
+    "typescript": "^5.1.6",
+    "mocha": "^10.2.0",
+    "@types/glob": "^7.2.0",
+    "@vscode/test-electron": "^2.3.8",
+    "vsce": "^2.15.0",
+    "minimatch": "^5.1.6"
+  }
+}

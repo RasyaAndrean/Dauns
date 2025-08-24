@@ -2,7 +2,7 @@
   "name": "dauns-variable-detective",
   "displayName": "Dauns - Variable Detective",
   "description": "Detect and display all variables in JavaScript/TypeScript files with detailed information",
-  "version": "2.8.0",
+  "version": "8.8.0",
   "icon": "resources/icon.png",
   "author": {
     "name": "Rasya Andrean",
@@ -33,7 +33,16 @@
     "onCommand:dauns.inlineVariable",
     "onCommand:dauns.showInteractivePanel",
     "onCommand:dauns.showPerformanceReport",
-    "onView:daunsVariables"
+    "onView:daunsVariables",
+    "onCommand:dauns.trackVariableUsage",
+    "onCommand:dauns.showVariableUsageReport",
+    "onCommand:dauns.analyzeVariableScopes",
+    "onCommand:dauns.showScopeReport",
+    "onCommand:dauns.showRefactoringSuggestions",
+    "onCommand:dauns.showVariableStatistics",
+    "onCommand:dauns.showCodeInsights",
+    "onCommand:dauns.showVariableJourney",
+    "onCommand:dauns.showMinimapLegend"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -119,6 +128,42 @@
         "command": "dauns.clearVariables",
         "title": "Clear Variables",
         "icon": "$(clear-all)"
+      },
+      {
+        "command": "dauns.trackVariableUsage",
+        "title": "Track Variable Usage"
+      },
+      {
+        "command": "dauns.showVariableUsageReport",
+        "title": "Show Variable Usage Report"
+      },
+      {
+        "command": "dauns.analyzeVariableScopes",
+        "title": "Analyze Variable Scopes"
+      },
+      {
+        "command": "dauns.showScopeReport",
+        "title": "Show Scope Report"
+      },
+      {
+        "command": "dauns.showRefactoringSuggestions",
+        "title": "Show Refactoring Suggestions"
+      },
+      {
+        "command": "dauns.showVariableStatistics",
+        "title": "Show Variable Statistics"
+      },
+      {
+        "command": "dauns.showCodeInsights",
+        "title": "Show Code Insights"
+      },
+      {
+        "command": "dauns.showVariableJourney",
+        "title": "Show Variable Journey"
+      },
+      {
+        "command": "dauns.showMinimapLegend",
+        "title": "Show Minimap Legend"
       }
     ],
     "menus": {
@@ -144,6 +189,16 @@
           "group": "navigation"
         },
         {
+          "command": "dauns.trackVariableUsage",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx)$/",
+          "group": "navigation"
+        },
+        {
+          "command": "dauns.showVariableUsageReport",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx)$/",
+          "group": "navigation"
+        },
+        {
           "command": "dauns.showInteractivePanel",
           "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx|py|vue|json|yaml|yml)$/",
           "group": "navigation"
@@ -151,6 +206,21 @@
         {
           "command": "dauns.showPerformanceReport",
           "when": "editorTextFocus",
+          "group": "navigation"
+        },
+        {
+          "command": "dauns.showVariableStatistics",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx)$/",
+          "group": "navigation"
+        },
+        {
+          "command": "dauns.showCodeInsights",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx)$/",
+          "group": "navigation"
+        },
+        {
+          "command": "dauns.showVariableJourney",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx)$/",
           "group": "navigation"
         },
         {
@@ -265,7 +335,18 @@
         "dauns.locale": {
           "type": "string",
           "default": "en",
-          "enum": ["en", "es", "fr", "de", "zh-cn", "ja", "ko", "ru", "pt-br", "id"],
+          "enum": [
+            "en",
+            "es",
+            "fr",
+            "de",
+            "zh-cn",
+            "ja",
+            "ko",
+            "ru",
+            "pt-br",
+            "id"
+          ],
           "description": "Language for the extension interface"
         },
         "dauns.aiAnalysisEnabled": {
@@ -282,6 +363,63 @@
           "type": "boolean",
           "default": true,
           "description": "Enable team collaboration features"
+        },
+        "dauns.variableUsageTrackingEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable variable usage tracking and analysis"
+        },
+        "dauns.scopeAnalysisEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable variable scope analysis and shadowing detection"
+        },
+        "dauns.refactoringSuggestionsEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable refactoring suggestions for variables"
+        },
+        "dauns.minimapVisualizationEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable minimap visualization for variables"
+        },
+        "dauns.showVariableTypeColors": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show color-coded indicators for different variable types in the minimap"
+        },
+        "dauns.showUnusedVariableIndicators": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show special indicators for unused variables in the minimap"
+        },
+        "dauns.showShadowedVariableIndicators": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show special indicators for shadowed variables in the minimap"
+        },
+        "dauns.variableTreeGrouping": {
+          "type": "string",
+          "default": "none",
+          "enum": [
+            "none",
+            "type",
+            "scope",
+            "file"
+          ],
+          "description": "Default grouping for variables in the tree view"
+        },
+        "dauns.variableTreeFiltering": {
+          "type": "string",
+          "default": "all",
+          "enum": [
+            "all",
+            "unused",
+            "shadowed",
+            "global"
+          ],
+          "description": "Default filtering for variables in the tree view"
         }
       }
     }

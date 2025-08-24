@@ -43,6 +43,30 @@
   - Security vulnerability detection for variable usage
   - Team collaboration for sharing analysis results
   - Internationalization (i18n) support with multiple languages
+- **Variable Usage Tracking**:
+  - Track how many times each variable is used
+  - Highlight unused variables
+  - Show variable references count
+  - Dead code detection
+- **Scope Analysis**:
+  - Visual indication of variable scope (global, function, block)
+  - Scope hierarchy visualization
+  - Variable shadowing detection
+  - Scope-based variable grouping
+- **Variable Statistics**:
+  - Most used variables tracking
+  - Variable complexity metrics
+  - File variable count
+  - Project-wide variable analysis
+- **Code Insights**:
+  - Variable lifecycle tracking
+  - Memory usage estimates
+  - Performance impact indicators
+  - Best practices suggestions
+- **Variable Journey Mode**:
+  - Trace variable from declaration to usage
+  - Visual flow diagram
+  - Interactive variable timeline
 
 ## 🚀 Installation
 
@@ -81,6 +105,36 @@
 1. Open a JavaScript or TypeScript file
 2. Right-click in the editor and select "Track Variable Lifecycle"
 3. View the complete lifecycle of variables from declaration to usage
+
+### Variable Usage Tracking
+
+1. Open a JavaScript or TypeScript file
+2. Use the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and run "DAUNS: Track Variable Usage"
+3. View detailed usage information for all variables
+
+### Scope Analysis
+
+1. Open a JavaScript or TypeScript file
+2. Use the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and run "DAUNS: Analyze Variable Scopes"
+3. View detailed scope information for all variables
+
+### Variable Statistics
+
+1. Open a JavaScript or TypeScript file
+2. Use the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and run "DAUNS: Show Variable Statistics"
+3. View comprehensive statistics about variables in the current file
+
+### Code Insights
+
+1. Open a JavaScript or TypeScript file
+2. Use the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and run "DAUNS: Show Code Insights"
+3. View code quality insights and recommendations
+
+### Variable Journey Mode
+
+1. Open a JavaScript or TypeScript file
+2. Use the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and run "DAUNS: Show Variable Journey"
+3. Select a variable to trace its complete journey through the code
 
 ### Refactoring Tools
 

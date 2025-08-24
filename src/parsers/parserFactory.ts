@@ -19,6 +19,10 @@ export class ParserFactory {
       new VueParser(),
       new JsonParser(),
       new YamlParser(),
+      // Advanced language parsers will be added in future updates
+      // new RustParser(),
+      // new GoParser(),
+      // new CppParser(),
     ];
 
     parsers.forEach(parser => {

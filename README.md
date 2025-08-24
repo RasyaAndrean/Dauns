@@ -37,6 +37,12 @@
   - Memory management to prevent excessive resource usage
   - Debounced file watching to reduce unnecessary processing
   - Performance monitoring and reporting
+- **AI-powered Features**:
+  - Smart variable analysis with naming and usage recommendations
+  - Code quality metrics and improvement suggestions
+  - Security vulnerability detection for variable usage
+  - Team collaboration for sharing analysis results
+  - Internationalization (i18n) support with multiple languages
 
 ## 🚀 Installation
 
@@ -106,6 +112,26 @@
 3. Memory usage is monitored and managed to prevent excessive resource consumption
 4. File updates are debounced to reduce unnecessary processing
 
+### AI-Powered Features
+
+1. **Code Quality Analysis**:
+
+   - Provides detailed metrics and recommendations for improving code quality
+   - Suggests variable-specific improvements for better naming and usage
+
+2. **Security Analysis**:
+
+   - Identifies potential security vulnerabilities in variable usage
+   - Provides recommendations for addressing security issues
+
+3. **Team Collaboration**:
+
+   - Allows saving and sharing analysis results with team members
+   - Supports adding comments and collaborating on code reviews
+
+4. **Language Selection**:
+   - Supports multiple languages for the extension UI
+
 ### Folder Analysis
 
 1. Right-click on any folder in the Explorer
@@ -148,6 +174,10 @@ The extension can be configured through VS Code settings:
 - `dauns.showFunctionVariables`: Show function variables in results
 - `dauns.showUnusedVariablesWarning`: Show warning for unused variables
 - `dauns.customVariablePatterns`: Custom regex patterns for variable detection
+- `dauns.locale`: Language for the extension interface
+- `dauns.aiAnalysisEnabled`: Enable or disable AI-powered variable analysis
+- `dauns.securityAnalysisEnabled`: Enable or disable security vulnerability analysis
+- `dauns.teamCollaborationEnabled`: Enable or disable team collaboration features
 
 ## 📚 Documentation
 
@@ -162,6 +192,7 @@ The extension can be configured through VS Code settings:
 - [Advanced UI Components](ADVANCED_UI_COMPONENTS.md) - Information about advanced UI features
 - [Performance Optimization](PERFORMANCE_OPTIMIZATION.md) - Details about performance features
 - [Performance Optimization Summary](PERFORMANCE_OPTIMIZATION_SUMMARY.md) - Implementation summary
+- [AI Features](AI_FEATURES.md) - Details about AI-powered features
 - [Refactoring](REFACTORING.md) - Refactoring capabilities
 - [UI Implementation Summary](UI_IMPLEMENTATION_SUMMARY.md) - UI component implementation
 - [Implementation Summary](IMPLEMENTATION_SUMMARY.md) - Complete implementation overview

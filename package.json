@@ -2,7 +2,7 @@
   "name": "dauns-variable-detective",
   "displayName": "Dauns - Variable Detective",
   "description": "Detect and display all variables in JavaScript/TypeScript files with detailed information",
-  "version": "0.0.1",
+  "version": "2.8.0",
   "icon": "resources/icon.png",
   "author": {
     "name": "Rasya Andrean",
@@ -93,6 +93,22 @@
       {
         "command": "dauns.showPerformanceReport",
         "title": "Show Performance Report"
+      },
+      {
+        "command": "dauns.analyzeCodeQuality",
+        "title": "Analyze Code Quality with AI"
+      },
+      {
+        "command": "dauns.analyzeCodeSecurity",
+        "title": "Analyze Code Security"
+      },
+      {
+        "command": "dauns.shareAnalysis",
+        "title": "Share Analysis with Team"
+      },
+      {
+        "command": "dauns.selectLanguage",
+        "title": "Select Language (i18n)"
       },
       {
         "command": "dauns.refreshVariables",
@@ -245,6 +261,27 @@
           "type": "array",
           "default": [],
           "description": "Custom regex patterns for variable detection"
+        },
+        "dauns.locale": {
+          "type": "string",
+          "default": "en",
+          "enum": ["en", "es", "fr", "de", "zh-cn", "ja", "ko", "ru", "pt-br", "id"],
+          "description": "Language for the extension interface"
+        },
+        "dauns.aiAnalysisEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable AI-powered variable analysis"
+        },
+        "dauns.securityAnalysisEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable security vulnerability analysis"
+        },
+        "dauns.teamCollaborationEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable team collaboration features"
         }
       }
     }

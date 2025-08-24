@@ -5,17 +5,31 @@ All notable changes to the "dauns-variable-detective" extension will be document
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.8.0] - 2025-08-25
 
 ### Added
 
+- Version update to 2.8.0
 - Creator information: Rasya Andrean (rasyaandrean@outlook.co.id)
 - Logo and icon for the extension
+- AI-powered code analysis features:
+  - Smart variable analysis with naming and usage recommendations
+  - Code quality metrics and improvement suggestions
+  - Security vulnerability detection for variable usage
+  - Team collaboration for sharing analysis results
+  - Internationalization (i18n) support with multiple languages
+- New commands for AI features:
+  - Analyze Code Quality with AI
+  - Analyze Code Security
+  - Share Analysis with Team
+  - Select Language (i18n)
 
 ### Changed
 
 - Updated LICENSE file with creator information
-- Updated README with new logo
+- Updated README with new logo and implemented AI features
+- Improved project structure and organization
+- Enhanced documentation for implemented features
 
 ## [0.0.1] - 2025-08-24
 

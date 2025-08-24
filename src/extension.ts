@@ -18,7 +18,15 @@ import { VariableLifecycleTracker } from './variableLifecycle';
 import { scanVariablesInDocument } from './variableScanner';
 import { WorkspaceScanner } from './workspaceScanner';
 
+// Import the AI modules
+import { CodeQualityAnalyzer } from './ai/codeQualityAnalyzer';
+import { I18nManager } from './ai/i18n';
+import { SecurityAnalyzer } from './ai/securityAnalyzer';
+import { TeamCollaborationManager } from './ai/teamCollaboration';
+import { AIVariableAnalyzer } from './ai/variableAnalyzer';
+
 export function activate(context: vscode.ExtensionContext) {
+  // eslint-disable-next-line no-console
   console.log('Dauns extension is now active!');
 
   // Create the tree view provider
@@ -41,6 +49,13 @@ export function activate(context: vscode.ExtensionContext) {
   const memoryManager = new MemoryManager();
   const debounceManager = new DebounceManager(500); // 500ms debounce delay
   const performanceMonitor = new PerformanceMonitor();
+
+  // Create AI analysis components
+  const aiVariableAnalyzer = AIVariableAnalyzer; // Using static methods
+  const codeQualityAnalyzer = new CodeQualityAnalyzer();
+  const securityAnalyzer = new SecurityAnalyzer();
+  const teamCollaborationManager = new TeamCollaborationManager(context);
+  const i18nManager = I18nManager.getInstance(); // Using singleton pattern
 
   // Start performance monitoring
   performanceMonitor.startMonitoring();
@@ -636,6 +651,233 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  // Register AI-powered commands
+  const analyzeCodeQualityCommand = vscode.commands.registerCommand(
+    'dauns.analyzeCodeQuality',
+    async () => {
+      const timer = performanceMonitor.startOperation('analyzeCodeQuality');
+
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        vscode.window.showErrorMessage('No active editor found!');
+        performanceMonitor.recordError();
+        timer.end();
+        return;
+      }
+
+      const document = editor.document;
+      const fileExtension = document.fileName.substring(
+        document.fileName.lastIndexOf('.')
+      );
+
+      // Try to get a parser for this file type
+      const parser = parserFactory.getParser(fileExtension);
+      let variables: any[] = [];
+
+      if (parser) {
+        // Use the appropriate parser for this language
+        variables = parser.parseVariables(
+          document.getText(),
+          document.fileName
+        );
+      } else {
+        // Fall back to the original JavaScript/TypeScript scanner
+        variables = scanVariablesInDocument(document);
+      }
+
+      if (variables.length === 0) {
+        vscode.window.showInformationMessage(
+          'No variables found in the current file.'
+        );
+        timer.end();
+        return;
+      }
+
+      // Analyze code quality using AI
+      const qualityReport = codeQualityAnalyzer.analyzeCodeQuality(
+        variables,
+        document.getText()
+      );
+
+      const panel = vscode.window.createWebviewPanel(
+        'daunsCodeQuality',
+        'Code Quality Analysis',
+        vscode.ViewColumn.One,
+        {
+          enableScripts: true,
+        }
+      );
+
+      panel.webview.html =
+        codeQualityAnalyzer.generateQualityReport(qualityReport);
+
+      timer.end();
+    }
+  );
+
+  const analyzeCodeSecurityCommand = vscode.commands.registerCommand(
+    'dauns.analyzeCodeSecurity',
+    async () => {
+      const timer = performanceMonitor.startOperation('analyzeCodeSecurity');
+
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        vscode.window.showErrorMessage('No active editor found!');
+        performanceMonitor.recordError();
+        timer.end();
+        return;
+      }
+
+      const document = editor.document;
+      const fileExtension = document.fileName.substring(
+        document.fileName.lastIndexOf('.')
+      );
+
+      // Try to get a parser for this file type
+      const parser = parserFactory.getParser(fileExtension);
+      let variables: any[] = [];
+
+      if (parser) {
+        // Use the appropriate parser for this language
+        variables = parser.parseVariables(
+          document.getText(),
+          document.fileName
+        );
+      } else {
+        // Fall back to the original JavaScript/TypeScript scanner
+        variables = scanVariablesInDocument(document);
+      }
+
+      if (variables.length === 0) {
+        vscode.window.showInformationMessage(
+          'No variables found in the current file.'
+        );
+        timer.end();
+        return;
+      }
+
+      // Analyze security using AI
+      const vulnerabilities = securityAnalyzer.analyzeSecurityVulnerabilities(
+        variables,
+        document.getText()
+      );
+
+      const panel = vscode.window.createWebviewPanel(
+        'daunsSecurity',
+        'Security Analysis',
+        vscode.ViewColumn.One,
+        {
+          enableScripts: true,
+        }
+      );
+
+      panel.webview.html =
+        securityAnalyzer.generateSecurityReport(vulnerabilities);
+
+      timer.end();
+    }
+  );
+
+  const shareAnalysisCommand = vscode.commands.registerCommand(
+    'dauns.shareAnalysis',
+    async () => {
+      const timer = performanceMonitor.startOperation('shareAnalysis');
+
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        vscode.window.showErrorMessage('No active editor found!');
+        performanceMonitor.recordError();
+        timer.end();
+        return;
+      }
+
+      const document = editor.document;
+      const fileExtension = document.fileName.substring(
+        document.fileName.lastIndexOf('.')
+      );
+
+      // Try to get a parser for this file type
+      const parser = parserFactory.getParser(fileExtension);
+      let variables: any[] = [];
+
+      if (parser) {
+        // Use the appropriate parser for this language
+        variables = parser.parseVariables(
+          document.getText(),
+          document.fileName
+        );
+      } else {
+        // Fall back to the original JavaScript/TypeScript scanner
+        variables = scanVariablesInDocument(document);
+      }
+
+      if (variables.length === 0) {
+        vscode.window.showInformationMessage(
+          'No variables found in the current file.'
+        );
+        timer.end();
+        return;
+      }
+
+      // Create analysis for sharing
+      const analysis = teamCollaborationManager.createAnalysis(
+        document.fileName,
+        variables
+      );
+
+      if (analysis) {
+        vscode.window.showInformationMessage(
+          'Analysis created successfully! You can now share it with your team.'
+        );
+      } else {
+        vscode.window.showErrorMessage('Failed to create analysis.');
+      }
+
+      timer.end();
+    }
+  );
+
+  const selectLanguageCommand = vscode.commands.registerCommand(
+    'dauns.selectLanguage',
+    async () => {
+      const timer = performanceMonitor.startOperation('selectLanguage');
+
+      const languages = [
+        { label: 'English', value: 'en' },
+        { label: 'Spanish', value: 'es' },
+        { label: 'French', value: 'fr' },
+        { label: 'German', value: 'de' },
+        { label: 'Chinese (Simplified)', value: 'zh-cn' },
+        { label: 'Japanese', value: 'ja' },
+        { label: 'Korean', value: 'ko' },
+        { label: 'Russian', value: 'ru' },
+        { label: 'Portuguese (Brazil)', value: 'pt-br' },
+        { label: 'Indonesian', value: 'id' },
+      ];
+
+      const selected = await vscode.window.showQuickPick(languages, {
+        placeHolder: 'Select language for DAUNS interface',
+      });
+
+      if (selected) {
+        // Update language setting
+        const success = i18nManager.setLocale(selected.value);
+
+        if (success) {
+          vscode.window.showInformationMessage(
+            `Language set to ${selected.label}`
+          );
+        } else {
+          vscode.window.showErrorMessage(
+            `Failed to set language to ${selected.label}`
+          );
+        }
+      }
+
+      timer.end();
+    }
+  );
+
   context.subscriptions.push(disposable);
   context.subscriptions.push(detectUnusedCommand);
   context.subscriptions.push(analyzeDependenciesCommand);
@@ -646,6 +888,10 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(clearCommand);
   context.subscriptions.push(showInteractivePanelCommand);
   context.subscriptions.push(showPerformanceReportCommand);
+  context.subscriptions.push(analyzeCodeQualityCommand);
+  context.subscriptions.push(analyzeCodeSecurityCommand);
+  context.subscriptions.push(shareAnalysisCommand);
+  context.subscriptions.push(selectLanguageCommand);
   context.subscriptions.push(treeView);
   context.subscriptions.push(decorationProvider);
   context.subscriptions.push(minimapProvider);
@@ -655,6 +901,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(memoryManager);
   context.subscriptions.push(debounceManager);
   context.subscriptions.push(performanceMonitor);
+  // Note: We don't push the AI modules to subscriptions since they don't have dispose methods
 }
 
 export function deactivate() {

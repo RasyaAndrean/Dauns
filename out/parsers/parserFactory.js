@@ -18,6 +18,10 @@ class ParserFactory {
             new vueParser_1.VueParser(),
             new jsonParser_1.JsonParser(),
             new yamlParser_1.YamlParser(),
+            // Advanced language parsers will be added in future updates
+            // new RustParser(),
+            // new GoParser(),
+            // new CppParser(),
         ];
         parsers.forEach(parser => {
             parser.fileExtensions.forEach(ext => {

@@ -18,6 +18,7 @@ export class JsonParser implements ILanguageParser {
       this.traverseJsonObject(jsonObject, '', variables, filePath);
     } catch (error) {
       // Handle invalid JSON
+      // eslint-disable-next-line no-console
       console.error('Invalid JSON:', error);
     }
 
@@ -54,20 +55,21 @@ export class JsonParser implements ILanguageParser {
   }
 
   private getJsonType(value: any): string {
-    if (value === null) return 'null';
-    if (Array.isArray(value)) return 'array';
+    if (value === null) {
+      return 'null';
+    }
+    if (Array.isArray(value)) {
+      return 'array';
+    }
     return typeof value;
   }
 
-  parseImports(content: string): ImportInfo[] {
+  parseImports(): ImportInfo[] {
     // JSON doesn't have imports in the traditional sense
     return [];
   }
 
-  getVariableReferences(
-    content: string,
-    variableName: string
-  ): ReferenceInfo[] {
+  getVariableReferences(): ReferenceInfo[] {
     const references: ReferenceInfo[] = [];
     return references;
   }

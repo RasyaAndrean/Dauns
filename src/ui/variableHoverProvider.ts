@@ -4,17 +4,20 @@ import { scanVariablesInDocument } from '../variableScanner';
 export class VariableHoverProvider implements vscode.HoverProvider {
   async provideHover(
     document: vscode.TextDocument,
-    position: vscode.Position,
-    token: vscode.CancellationToken
+    position: vscode.Position
   ): Promise<vscode.Hover | undefined> {
     const wordRange = document.getWordRangeAtPosition(position);
-    if (!wordRange) return undefined;
+    if (!wordRange) {
+      return undefined;
+    }
 
     const word = document.getText(wordRange);
     const variables = scanVariablesInDocument(document);
     const variable: any = variables.find((v: any) => v.name === word);
 
-    if (!variable) return undefined;
+    if (!variable) {
+      return undefined;
+    }
 
     const hoverContent = this.createHoverContent(variable);
     return new vscode.Hover(hoverContent, wordRange);

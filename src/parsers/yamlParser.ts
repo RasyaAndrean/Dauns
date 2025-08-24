@@ -38,12 +38,24 @@ export class YamlParser implements ILanguageParser {
   }
 
   private inferYamlType(value: string): string {
-    if (!value || value === '') return 'null';
-    if (value === 'true' || value === 'false') return 'boolean';
-    if (/^\d+$/.test(value)) return 'number';
-    if (/^\d*\.\d+$/.test(value)) return 'float';
-    if (value.startsWith('[') && value.endsWith(']')) return 'array';
-    if (value.startsWith('{') && value.endsWith('}')) return 'object';
+    if (!value || value === '') {
+      return 'null';
+    }
+    if (value === 'true' || value === 'false') {
+      return 'boolean';
+    }
+    if (/^\d+$/.test(value)) {
+      return 'number';
+    }
+    if (/^\d*\.\d+$/.test(value)) {
+      return 'float';
+    }
+    if (value.startsWith('[') && value.endsWith(']')) {
+      return 'array';
+    }
+    if (value.startsWith('{') && value.endsWith('}')) {
+      return 'object';
+    }
     return 'string';
   }
 
@@ -52,7 +64,7 @@ export class YamlParser implements ILanguageParser {
     return `level-${level}`;
   }
 
-  parseImports(content: string): ImportInfo[] {
+  parseImports(): ImportInfo[] {
     // YAML doesn't have imports in the traditional sense
     return [];
   }

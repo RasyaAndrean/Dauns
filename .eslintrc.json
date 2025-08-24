@@ -5,6 +5,24 @@
     "ecmaVersion": 6,
     "sourceType": "module"
   },
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "globals": {
+    "vscode": "readonly",
+    "suite": "readonly",
+    "test": "readonly",
+    "setTimeout": "readonly",
+    "__dirname": "readonly",
+    "process": "readonly",
+    "global": "readonly",
+    "Thenable": "readonly",
+    "NodeJS": "readonly",
+    "performance": "readonly",
+    "clearInterval": "readonly",
+    "setInterval": "readonly"
+  },
   "plugins": ["@typescript-eslint"],
   "extends": ["eslint:recommended"],
   "rules": {

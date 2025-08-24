@@ -5,6 +5,31 @@ All notable changes to the "dauns-variable-detective" extension will be document
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.8.0] - 2025-08-25
+
+### Added
+
+- Version update to 8.8.0
+- Comprehensive code quality improvements and linting error fixes
+- Enhanced test suite with all tests passing
+- Improved variable statistics calculation
+- Better environment configuration for development
+
+### Changed
+
+- Removed unused parameters and variables throughout the codebase
+- Optimized function signatures by removing unused context parameters
+- Fixed curly brace warnings by adding braces to all if statements
+- Updated ESLint configuration with proper environment definitions
+- Improved code maintainability and readability
+
+### Fixed
+
+- Resolved compilation errors after parameter removal
+- Fixed failing tests in code insights and variable statistics modules
+- Corrected variable name assertions in test suite
+- Fixed mostUsedVariables calculation to properly exclude unused variables
+
 ## [2.8.0] - 2025-08-25
 
 ### Added
@@ -23,6 +48,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Analyze Code Security
   - Share Analysis with Team
   - Select Language (i18n)
+- Variable Usage Tracking features:
+  - Track how many times each variable is used
+  - Highlight unused variables
+  - Show variable references count
+  - Dead code detection
+- Scope Analysis features:
+  - Visual indication of variable scope (global, function, block)
+  - Scope hierarchy visualization
+  - Variable shadowing detection
+  - Scope-based variable grouping
+- Variable Statistics features:
+  - Most used variables tracking
+  - Variable complexity metrics
+  - File variable count
+  - Project-wide variable analysis
+- Code Insights features:
+  - Variable lifecycle tracking
+  - Memory usage estimates
+  - Performance impact indicators
+  - Best practices suggestions
+- Variable Journey Mode features:
+  - Trace variable from declaration to usage
+  - Visual flow diagram
+  - Interactive variable timeline
+- New commands for Variable Analysis features:
+  - Track Variable Usage
+  - Show Variable Usage Report
+  - Analyze Variable Scopes
+  - Show Scope Report
+  - Show Refactoring Suggestions
+  - Show Variable Statistics
+  - Show Code Insights
+  - Show Variable Journey
+  - Show Minimap Legend
 
 ### Changed
 

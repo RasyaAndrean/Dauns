@@ -5,9 +5,7 @@ export class ConvertVariableProvider {
    * Converts a variable declaration from one type to another (var/let/const)
    * @param context The extension context
    */
-  static async convertVariable(
-    context: vscode.ExtensionContext
-  ): Promise<void> {
+  static async convertVariable(): Promise<void> {
     try {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
@@ -68,6 +66,7 @@ export class ConvertVariableProvider {
         vscode.window.showErrorMessage('Failed to convert variable');
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error converting variable:', error);
       vscode.window.showErrorMessage(`Failed to convert variable: ${error}`);
     }
@@ -77,9 +76,7 @@ export class ConvertVariableProvider {
    * Provides smart suggestions for variable conversion based on usage
    * @param context The extension context
    */
-  static async smartConvertVariable(
-    context: vscode.ExtensionContext
-  ): Promise<void> {
+  static async smartConvertVariable(): Promise<void> {
     try {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
@@ -179,6 +176,7 @@ export class ConvertVariableProvider {
         vscode.window.showErrorMessage('Failed to convert variable');
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error converting variable:', error);
       vscode.window.showErrorMessage(`Failed to convert variable: ${error}`);
     }

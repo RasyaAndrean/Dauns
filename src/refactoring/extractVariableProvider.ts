@@ -5,9 +5,7 @@ export class ExtractVariableProvider {
    * Extracts selected text into a new variable
    * @param context The extension context
    */
-  static async extractVariable(
-    context: vscode.ExtensionContext
-  ): Promise<void> {
+  static async extractVariable(): Promise<void> {
     try {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
@@ -129,9 +127,7 @@ export class ExtractVariableProvider {
    * Extracts a complex expression into a new variable with intelligent naming
    * @param context The extension context
    */
-  static async extractWithSmartNaming(
-    context: vscode.ExtensionContext
-  ): Promise<void> {
+  static async extractWithSmartNaming(): Promise<void> {
     try {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {

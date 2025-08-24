@@ -11,8 +11,6 @@ export class PythonParser implements ILanguageParser {
   fileExtensions = ['.py', '.pyw', '.pyx'];
 
   parseVariables(content: string, filePath: string): VariableInfo[] {
-    const variables: VariableInfo[] = [];
-
     // Regular expressions untuk Python
     const patterns = [
       // Variable assignments: x = value
@@ -51,13 +49,13 @@ export class PythonParser implements ILanguageParser {
 
         while ((match = pattern.exec(line)) !== null) {
           // Different patterns have different capture groups
-          let varName, value, indent;
+          let varName, value;
           if (
             pattern.source.includes('=') &&
             !pattern.source.includes('self\\.')
           ) {
             // Assignment pattern
-            [, indent, varName, value] = match;
+            [, , varName, value] = match;
           } else if (pattern.source.includes('def\\s+')) {
             // Function pattern
             [, varName] = match;
@@ -101,13 +99,27 @@ export class PythonParser implements ILanguageParser {
 
   private inferPythonType(value: string): string {
     // Python type inference
-    if (/^["'].*["']$/.test(value.trim())) return 'str';
-    if (/^\d+$/.test(value.trim())) return 'int';
-    if (/^\d*\.\d+$/.test(value.trim())) return 'float';
-    if (/^(True|False)$/.test(value.trim())) return 'bool';
-    if (/^\[.*\]$/.test(value.trim())) return 'list';
-    if (/^\{.*\}$/.test(value.trim())) return 'dict';
-    if (/^\(.*\)$/.test(value.trim())) return 'tuple';
+    if (/^["'].*["']$/.test(value.trim())) {
+      return 'str';
+    }
+    if (/^\d+$/.test(value.trim())) {
+      return 'int';
+    }
+    if (/^\d*\.\d+$/.test(value.trim())) {
+      return 'float';
+    }
+    if (/^(True|False)$/.test(value.trim())) {
+      return 'bool';
+    }
+    if (/^\[.*\]$/.test(value.trim())) {
+      return 'list';
+    }
+    if (/^\{.*\}$/.test(value.trim())) {
+      return 'dict';
+    }
+    if (/^\(.*\)$/.test(value.trim())) {
+      return 'tuple';
+    }
     return 'Any';
   }
 

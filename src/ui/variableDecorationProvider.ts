@@ -33,7 +33,9 @@ export class VariableDecorationProvider {
   }
 
   async updateDecorations(editor: vscode.TextEditor): Promise<void> {
-    if (!editor || !this.isSupported(editor.document)) return;
+    if (!editor || !this.isSupported(editor.document)) {
+      return;
+    }
 
     const variables: any[] = scanVariablesInDocument(editor.document);
     const unusedVars: vscode.DecorationOptions[] = [];

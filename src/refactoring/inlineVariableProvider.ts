@@ -5,7 +5,7 @@ export class InlineVariableProvider {
    * Inlines a variable by replacing its usages with its value
    * @param context The extension context
    */
-  static async inlineVariable(context: vscode.ExtensionContext): Promise<void> {
+  static async inlineVariable(): Promise<void> {
     try {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
@@ -28,7 +28,6 @@ export class InlineVariableProvider {
         return;
       }
 
-      const variableType = varMatch[1];
       const variableName = varMatch[2];
       const variableValue = varMatch[3].trim();
 
@@ -91,6 +90,7 @@ export class InlineVariableProvider {
         vscode.window.showErrorMessage('Failed to inline variable');
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error inlining variable:', error);
       vscode.window.showErrorMessage(`Failed to inline variable: ${error}`);
     }
@@ -100,17 +100,13 @@ export class InlineVariableProvider {
    * Inlines all unused variables in the current document
    * @param context The extension context
    */
-  static async inlineUnusedVariables(
-    context: vscode.ExtensionContext
-  ): Promise<void> {
+  static async inlineUnusedVariables(): Promise<void> {
     try {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
         vscode.window.showErrorMessage('No active editor found');
         return;
       }
-
-      const document = editor.document;
       // This would require scanning for variables first, which we can do by
       // temporarily using the variable scanner (not implemented here for brevity)
 
@@ -118,6 +114,7 @@ export class InlineVariableProvider {
         'Inline unused variables feature is being prepared'
       );
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error inlining unused variables:', error);
       vscode.window.showErrorMessage(
         `Failed to inline unused variables: ${error}`

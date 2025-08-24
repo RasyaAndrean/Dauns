@@ -12,7 +12,9 @@ export class MinimapProvider {
   }
 
   async updateMinimap(editor: vscode.TextEditor): Promise<void> {
-    if (!editor || !this.isSupported(editor.document)) return;
+    if (!editor || !this.isSupported(editor.document)) {
+      return;
+    }
 
     const variables: any[] = scanVariablesInDocument(editor.document);
     const decorations: vscode.DecorationOptions[] = [];

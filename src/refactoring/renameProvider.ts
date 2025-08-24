@@ -9,8 +9,7 @@ export class RenameProvider {
    */
   static async renameVariable(
     oldName: string,
-    newName: string,
-    context: vscode.ExtensionContext
+    newName: string
   ): Promise<boolean> {
     try {
       // Validate input
@@ -101,6 +100,7 @@ export class RenameProvider {
                 }
               }
             } catch (error) {
+              // eslint-disable-next-line no-console
               console.error(`Error processing file ${file.fsPath}:`, error);
               // Continue with other files even if one fails
             }
@@ -128,6 +128,7 @@ export class RenameProvider {
 
       return success;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error renaming variable:', error);
       vscode.window.showErrorMessage(`Failed to rename variable: ${error}`);
       return false;
@@ -159,12 +160,14 @@ export class RenameProvider {
             affectedFiles.push(file.fsPath);
           }
         } catch (error) {
+          // eslint-disable-next-line no-console
           console.error(`Error checking file ${file.fsPath}:`, error);
         }
       }
 
       return affectedFiles;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error previewing rename:', error);
       vscode.window.showErrorMessage(`Failed to preview rename: ${error}`);
       return [];

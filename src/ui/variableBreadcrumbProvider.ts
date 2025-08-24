@@ -5,8 +5,7 @@ export class VariableBreadcrumbProvider
   implements vscode.DocumentSymbolProvider
 {
   async provideDocumentSymbols(
-    document: vscode.TextDocument,
-    token: vscode.CancellationToken
+    document: vscode.TextDocument
   ): Promise<vscode.DocumentSymbol[]> {
     const variables: any[] = scanVariablesInDocument(document);
     const symbols: vscode.DocumentSymbol[] = [];

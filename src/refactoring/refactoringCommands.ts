@@ -64,7 +64,7 @@ export class RefactoringCommands {
         }
 
         // Perform the rename
-        await RenameProvider.renameVariable(variableName, newName, context);
+        await RenameProvider.renameVariable(variableName, newName);
       }
     );
 
@@ -72,7 +72,7 @@ export class RefactoringCommands {
     const extractCommand = vscode.commands.registerCommand(
       'dauns.extractVariable',
       async () => {
-        await ExtractVariableProvider.extractVariable(context);
+        await ExtractVariableProvider.extractVariable();
       }
     );
 
@@ -80,7 +80,7 @@ export class RefactoringCommands {
     const extractSmartCommand = vscode.commands.registerCommand(
       'dauns.extractVariableSmart',
       async () => {
-        await ExtractVariableProvider.extractWithSmartNaming(context);
+        await ExtractVariableProvider.extractWithSmartNaming();
       }
     );
 
@@ -88,7 +88,7 @@ export class RefactoringCommands {
     const convertCommand = vscode.commands.registerCommand(
       'dauns.convertVariable',
       async () => {
-        await ConvertVariableProvider.convertVariable(context);
+        await ConvertVariableProvider.convertVariable();
       }
     );
 
@@ -96,7 +96,7 @@ export class RefactoringCommands {
     const convertSmartCommand = vscode.commands.registerCommand(
       'dauns.convertVariableSmart',
       async () => {
-        await ConvertVariableProvider.smartConvertVariable(context);
+        await ConvertVariableProvider.smartConvertVariable();
       }
     );
 
@@ -104,7 +104,7 @@ export class RefactoringCommands {
     const inlineCommand = vscode.commands.registerCommand(
       'dauns.inlineVariable',
       async () => {
-        await InlineVariableProvider.inlineVariable(context);
+        await InlineVariableProvider.inlineVariable();
       }
     );
 

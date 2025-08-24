@@ -40,8 +40,6 @@ export class VueParser implements ILanguageParser {
     template: string,
     filePath: string
   ): VariableInfo[] {
-    const variables: VariableInfo[] = [];
-
     // Vue template patterns
     const patterns = [
       // v-for directives: v-for="item in items"
@@ -67,7 +65,6 @@ export class VueParser implements ILanguageParser {
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
-      const lineNum = i + 1;
 
       for (const pattern of patterns) {
         // Reset the pattern to ensure we get all matches
@@ -81,7 +78,7 @@ export class VueParser implements ILanguageParser {
               name: varName,
               type: 'any',
               declarationType: 'vue-template-variable',
-              line: lineNum,
+              line: i + 1,
               character: match.index,
               filePath: filePath,
               scope: 'template',

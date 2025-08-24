@@ -123,7 +123,9 @@ export class InteractiveVariablePanel {
   }
 
   private setupWebviewMessageHandling(): void {
-    if (!this.panel) return;
+    if (!this.panel) {
+      return;
+    }
 
     const disposable = this.panel.webview.onDidReceiveMessage(message => {
       switch (message.command) {

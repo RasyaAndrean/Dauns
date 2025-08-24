@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Output
+out/
+
+# VS Code
+.vscode-test/
+
+# Package files
+*.vsix
+
+# Log files
+*.log
+
+# Environment files
+.env
+
+# IDE files
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+Thumbs.db
+.DS_Store
+
+# Temporary files
+*.tmp
+*.temp
+
+# Documentation artifacts
+lint-errors.txt
+lint-errors-after-fix.txt
+
+# Summary files
+*SUMMARY.md
+IMPLEMENTATION_SUMMARY*.md
+PROJECT_COMPLETION_SUMMARY.md
+FINAL_FEATURES_SUMMARY.md

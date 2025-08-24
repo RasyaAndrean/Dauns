@@ -434,17 +434,20 @@
     "test:unit": "node ./out/variableScanner.test.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.80.0",
+    "@types/glob": "^7.2.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "18.x",
+    "@types/vscode": "^1.80.0",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
-    "eslint": "^8.47.0",
-    "typescript": "^5.1.6",
-    "mocha": "^10.2.0",
-    "@types/glob": "^7.2.0",
     "@vscode/test-electron": "^2.3.8",
-    "vsce": "^2.15.0",
-    "minimatch": "^5.1.6"
+    "eslint": "^8.47.0",
+    "minimatch": "^5.1.6",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.6",
+    "vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "sharp": "^0.34.3"
   }
 }
